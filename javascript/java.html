@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+    <body>
+        <script>
+
+            var age=20;
+            age=30;
+            var age=40;
+            console.log("Age:",age);
+
+            let course="Mern";
+            course="dsa";
+            console.log("Course:",course);
+
+            const pan=50;
+            console.log("Pan:",pan);
+
+            let admin="sathur";
+            let password="sathur!123";
+
+            if(admin==="sathur" && password==="sathur!123")
+        {
+            console.log("Login Successful");
+        }
+        else
+        {
+            console.log("Login unsuccessful");
+        }
+
+        let voter_age=18;
+        let voter_id="yes";
+
+        if(voter_age===18 && voter_id==="yes")
+        {
+            console.log("Eligible");
+        }
+        else{
+            console.log("Not eligible");
+        }
+
+        function student(name,clg="Sece"){
+            console.log(`Hello ${name} welcome to ${clg} college`);
+        }
+        student('sathur');
+        
+
+
+        function employee(name,clg="Sece",company){
+            console.log(`My name is ${name} I have studied in ${company} and I am working in ${clg}`);
+        }
+        employee('Sathur',"Nividia");
+        employee('Sathur',"Microsoft");
+
+        let data1 = function(){
+            return "Hello JavaScript";
+        }
+
+        console.log(data1())
+
+        let multi=(a,b)=>{return a*b};
+        console.log(multi(5,6));
+
+        function sece(callback){
+            console.log("Welcome Back");
+            callback();
+        }
+
+        function stud(){
+            console.log("Display Students");
+        }
+        sece(stud)
+
+        let whatsapp=() =>{
+            console.log("whats app bro!!");
+        }
+
+        let notification=() =>{
+            console.log("Fine daw machaa");
+        }
+        whatsapp(notification);
+
+    
+
+    
+
+    let fetch_api = new Promise((resolve,reject)=>{
+        let api = true;
+        if(api){
+            resolve("Fetched api data");
+
+        }else{
+            setTimeout(() => {
+                reject("Error while fetching api data");
+            }, 2000);
+        }
+    });
+    fetch_api.then(data=>console.log(data))
+
+
+    let foodorder = new Promise((resolve,reject)=>{
+        let api = true;
+        if(api){
+            resolve("Food ordered successfully");
+
+        }else{
+            setTimeout(() => {
+                reject("Order unsuccesfull");
+            }, 2000);
+        }
+    });
+    foodorder.then(data=>console.log(data))
+
+
+        </script>
+    </body>
+</html>
