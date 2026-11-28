@@ -73,8 +73,13 @@ a {
   font-size: 13px;
 }
 
-.form-success {
-  margin: 16px 0 0;
-  color: #166534;
-  font-weight: 700;
+.registration-table-wrap {
+  margin-top: 24px;
+  overflow-x: auto;
+  text-align: left;
+}
+
+.registration-table-wrap td[colspan] {
+  color: #697187;
+  text-align: center;
 }

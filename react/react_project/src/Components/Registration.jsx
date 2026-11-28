@@ -7,25 +7,27 @@ function Registration() {
     phoneNumber: '',
   })
   const [errors, setErrors] = useState({})
-  const [successMessage, setSuccessMessage] = useState('')
+  const [registrations, setRegistrations] = useState([])
 
   function handleChange(event) {
     const { name, value } = event.target
     setFormData((current) => ({ ...current, [name]: value }))
     setErrors((current) => ({ ...current, [name]: '' }))
-    setSuccessMessage('')
   }
 
   function handleSubmit(event) {
     event.preventDefault()
-    const nextErrors = {}
     const username = formData.username.trim()
     const email = formData.email.trim()
     const phoneNumber = formData.phoneNumber.trim()
+    const nextErrors = {}
 
     if (username.length < 3) {
       nextErrors.username = 'Name must contain at least 3 characters.'
+    } else if (!/^[A-Za-z ]+$/.test(username)) {
+      nextErrors.username = 'Name can contain letters and spaces only.'
     }
+
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       nextErrors.email = 'Enter a valid email address.'
     }
@@ -36,13 +38,16 @@ function Registration() {
     setErrors(nextErrors)
     if (Object.keys(nextErrors).length > 0) return
 
+    setRegistrations((current) => [
+      ...current,
+      { username, email, phoneNumber },
+    ])
     setFormData({ username: '', email: '', phoneNumber: '' })
-    setSuccessMessage('Registration submitted successfully.')
   }
 
   return (
     <section className="panel demo-panel">
-      <p className="eyebrow">Form demo</p>
+      <p className="eyebrow">Registration form</p>
       <h2>Registration</h2>
       <form className="registration-form" noValidate onSubmit={handleSubmit}>
         <div className="registration-field">
@@ -109,11 +114,33 @@ function Registration() {
           Submit
         </button>
       </form>
-      {successMessage && (
-        <p className="form-success" role="status">
-          {successMessage}
-        </p>
-      )}
+
+      <div className="registration-table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Phone number</th>
+            </tr>
+          </thead>
+          <tbody>
+            {registrations.length === 0 ? (
+              <tr>
+                <td colSpan="3">Submitted registrations will appear here.</td>
+              </tr>
+            ) : (
+              registrations.map((registration, index) => (
+                <tr key={`${registration.email}-${index}`}>
+                  <td>{registration.username}</td>
+                  <td>{registration.email}</td>
+                  <td>{registration.phoneNumber}</td>
+                </tr>
+              ))
+            )}
+          </tbody>
+        </table>
+      </div>
     </section>
   )
 }
